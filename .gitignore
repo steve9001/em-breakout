@@ -1,0 +1,8 @@
+.rvmrc
+.bundle
+*.gem
+Gemfile.lock
+pkg/*
+features/support/breakout.yml
+features/support/em-breakout.output
+features/support/stats.html

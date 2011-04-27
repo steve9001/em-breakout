@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+require 'daemons'
+require File.expand_path("lib/em-breakout")
+
+options = {
+  :dir_mode => :normal,
+  :dir => File.expand_path('../', __FILE__),
+  :log_output => :true,
+  :app_name => 'em-breakout'
+}
+
+
+breakout_opts = {
+  :worker_port => 8001,
+  :browser_port => 8002,
+  :debug => ENV['EMDEBUG'],
+  :bdebug => ENV['BDEBUG']
+}
+
+Daemons.run_proc('em-breakout', options) do
+
+  if ENV['EMPROFILE']
+    require 'ruby-prof'
+    result = RubyProf.profile { EventMachine::Breakout.start_server(breakout_opts) }
+    printer = RubyProf::GraphHtmlPrinter.new(result)
+    printer.print(File.open(File.expand_path('../stats.html', __FILE__),'w'), :min_percent => 5)
+  else
+    EventMachine::Breakout.start_server(breakout_opts)
+  end
+
+
+end
