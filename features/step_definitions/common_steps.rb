@@ -14,6 +14,10 @@ When /^browser (\d+) opens a url with notify$/ do |id|
   @browser_by_id[id] = Breakout::Socket.new(Breakout.browser_url("test", :bid => id, :notify => true))
 end
 
+When /^browser (\d+) opens a url with bid "([^"]*)" and notify$/ do |id, bid|
+  @browser_by_id[id] = Breakout::Socket.new(Breakout.browser_url("test", :bid => bid, :notify => true))
+end
+
 When /^worker (\d+) opens a url for work$/ do |id|
   @worker_by_id[id] = Breakout::Socket.new(Breakout.worker_url)
   @worker_by_id[id].send :done_work => true

@@ -18,6 +18,13 @@ Feature: security
     And browser 2 should be disconnected
     And browser 1 should be connected
 
+  Scenario: bid freed after use
+    Given worker 1 opens a url
+    When browser 1 opens a url with bid "foo"
+    And browser 1 disconnects
+    And browser 2 opens a url with bid "foo"
+    Then browser 2 should be connected
+
   Scenario: expired link
     Given worker 1 opens a url
     When browser 1 opens an expired url

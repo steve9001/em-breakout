@@ -28,7 +28,7 @@ module EventMachine
               throw :break
             end
 
-            if @grid.browsers.has_key?(@bid)
+            if @grid.browsers.has_key?(@bid) or @grid.disconnected_browsers.has_key?(@bid)
               close_websocket "bid in use"
               throw :break
             end
@@ -71,6 +71,7 @@ module EventMachine
           log("closing") if debug
 
           if @message_queue
+            @grid.browsers.delete @bid
 
             if @notify
               @grid.disconnected_browsers[@bid] = self

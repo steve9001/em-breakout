@@ -17,3 +17,16 @@ Feature: notify
     Then worker 1's payload route should be "test"
     Then worker 1's payload bid should be "1"
     Then worker 1's payload message should be "/close"
+
+  Scenario: bid freed after notify
+    Given worker 1 opens a url for work
+    When browser 1 opens a url with bid "foo" and notify
+    And worker 1 receives a payload
+    And browser 1 disconnects
+    And browser 2 opens a url with bid "foo"
+    Then browser 2 should not be connected
+    When worker 1 sends done_work
+    And worker 1 receives a payload
+    And worker 1 sends done_work
+    When browser 2 opens a url with bid "foo"
+    Then browser 2 should be connected
