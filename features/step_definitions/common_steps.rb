@@ -107,10 +107,12 @@ end
 
 When /^browser (\d+) disconnects$/ do |id|
   @browser_by_id[id].close
+  sleep(0.01)
 end
 
 When /^worker (\d+) disconnects$/ do |id|
   @worker_by_id[id].close
+  sleep(0.01)
 end
 
 Then /^browser (\d+) should be disconnected$/ do |id|
@@ -156,4 +158,8 @@ end
 
 Given /^the server is restarted$/ do
   restart_server
+end
+
+When /^there is a pause$/ do
+  sleep(0.1)
 end
