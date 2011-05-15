@@ -7,8 +7,8 @@ module EventMachine
       def breakout(debug=false)
 
         onopen do
-          @grid_name = request["Path"].split('?').first.gsub('/','')
-          @grid_key = request["Query"]["grid_key"]
+          @grid_name = request["path"].split('?').first.gsub('/','')
+          @grid_key = request["query"]["grid_key"]
 
           log(%|grid: #{@grid_name}\ngrid_key: #{@grid_key}|) if debug
 

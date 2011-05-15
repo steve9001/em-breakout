@@ -11,13 +11,13 @@ module EventMachine
       def breakout(debug=false)
 
         onopen do
-          @grid_name = request["Path"].split('?').first.gsub('/','')
+          @grid_name = request["path"].split('?').first.gsub('/','')
           @grid = GRIDS[@grid_name]
-          @route = request["Query"]["route"]
-          @bid = request["Query"]["bid"]
-          @notify = request["Query"]["notify"] == "true" ? true : false
-          @e = request["Query"]["e"].to_i
-          @gat = request["Query"]["gat"]
+          @route = request["query"]["route"]
+          @bid = request["query"]["bid"]
+          @notify = request["query"]["notify"] == "true" ? true : false
+          @e = request["query"]["e"].to_i
+          @gat = request["query"]["gat"]
 
           log(%|grid_name: #{@grid_name}\nroute: #{@route}\nbid: #{@bid}\ne: #{@e}\n| +
               %|gat: #{@gat}\nnotify: #{@notify}|) if debug

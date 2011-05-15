@@ -13,7 +13,7 @@ module EventMachine
         @workers = Hash.new  # worker => true
         @work_queue = Hash.new   # browser => true
         @worker_queue = Hash.new # worker => true
-        @grid_key = worker.request["Query"]["grid_key"]
+        @grid_key = worker.request["query"]["grid_key"]
         @name = worker.grid_name
         GRIDS[@name] = self
       end

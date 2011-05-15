@@ -14,9 +14,9 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "em-breakout"
 
-  s.add_dependency 'json', '>=1.4.6'
-  s.add_dependency 'em-websocket', '>=0.2.1'
-  s.add_dependency 'breakout', '>=0.0.2'
+  s.add_dependency 'json', '=1.5.1'
+  s.add_dependency 'em-websocket', '=0.3.0'
+  s.add_dependency 'breakout', '=0.0.2'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
