@@ -24,7 +24,7 @@ When /^worker (\d+) opens a url for work$/ do |id|
 end
 
 When /^browser (\d+) opens a url$/ do |id|
-  When %|browser #{id} opens a url for "test"|
+  step %|browser #{id} opens a url for "test"|
 end
 
 When /^browser (\d+) sends "([^"]*)"$/ do |id, msg|
@@ -37,7 +37,7 @@ end
 
 Then /^worker (\d+) should not have a payload$/ do |id|
   ->() do
-    When %|worker #{id} receives a payload|
+    step %|worker #{id} receives a payload|
   end.should raise_error(Timeout::Error)
 end
 
@@ -116,11 +116,11 @@ When /^worker (\d+) disconnects$/ do |id|
 end
 
 Then /^browser (\d+) should be disconnected$/ do |id|
-  Then "browser #{id} should not be connected"
+  step "browser #{id} should not be connected"
 end
 
 Then /^worker (\d+) should be disconnected$/ do |id|
-  Then "worker #{id} should not be connected"
+  step "worker #{id} should not be connected"
 end
 
 When /^browser (\d+) opens an expired url$/ do |id|
